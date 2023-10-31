@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Health Care Website</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+      <ul>
+        <li><a href="#sec">About</a></li>
+        <li><a href="cat.html">Mouse</a></li>
+        <li><a href="calculator.html">BMI</a></li>
+        <li><a href="form.html">Register</a></li>
+      </ul>
+  </header>
+  <section>
+    <img id="stars" src="stars.png" alt="Stars">
+    <img id="moon" src="moon.png" alt="Moon">
+    <img id="mountains_behind" src="mountains_behind.png" alt="Mountains Behind">
+    <h2 id="text">Health Care</h2>
+    <img id="mountains_front" src="mountains_front.png" alt="Mountains Front">
+  </section>
+  <div class="sec" id="sec">
+    <h2>About Us</h2>
+    <p>      
+      Welcome to HC, your trusted source for comprehensive healthcare information and resources. We are dedicated to providing you with the latest in medical knowledge, wellness tips, and healthcare services, all in one convenient online destination.
+      At HC, our mission is to empower individuals to take control of their health and well-being. We believe that everyone deserves access to accurate and up-to-date healthcare information to make informed decisions about their health.
+      Our team of healthcare experts, doctors, and writers work tirelessly to bring you well-researched articles, tips, and insights into a wide range of health topics.
+      We provide practical advice on maintaining a healthy lifestyle, including diet, exercise, and mental well-being.
+      Find local healthcare providers, clinics, and hospitals through our directory, making it easier to connect with the right healthcare professionals.
+      Connect with others who share similar health concerns and experiences in our supportive community forum.
+      Stay informed about the latest developments in the healthcare industry, including breakthroughs in medical research and treatments.
+      We prioritize accuracy, credibility, and transparency in all our content. Our team of medical professionals ensures that the information we provide is reliable and up-to-date.
+      Our website is user-friendly and accessible, making it easy for individuals of all backgrounds to navigate and find the information they need.
+      We believe in the power of a supportive community. Join our platform to connect with others who understand your healthcare journey.
+      At HC, your health is our priority. We are here to support you every step of the way on your path to a healthier and happier life.
+      Thank you for choosing us as your trusted healthcare resource.
+      <br><br>
+    </p>
+  </div>
+  <script>
+  let stars = document.getElementById('stars');
+  let moon = document.getElementById('moon');
+  let mountains_behind = document.getElementById('mountains_behind');
+  let text = document.getElementById('text');
+  let mountains_front = document.getElementById('mountains_front');
+  let header = document.querySelector('header');
+  
+
+  window.addEventListener('scroll', function() {
+    let value = window.scrollY;
+  
+    stars.style.left = value * 0.25 + 'px';
+    moon.style.top = value * 10.5 + 'px';
+    mountains_behind.style.top = value * 0.5 + 'px';
+    mountains_front.style.top = value * 0.5 + 'px';
+    text.style.marginRight = value * 4 + 'px';
+    text.style.marginTop = value * 1.5 + 'px';
+    header.style.top = value * 0.5 + 'px';
+  });
+
+</script>
+<footer>
+  <div class="contact-privacy">
+      <a href="#contact">Contact Us</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms& Conditions</a>
+      <a href="#sitemap">Site Map</a>
+  </div>
+  <div class="all-rights">
+    &copy; HC Healthcare Trademark. All Rights Reserved.
+</div>
+
+</footer>
+</body>
+</html>
