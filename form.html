@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Checkup Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('stars.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],input[type="number"],input[type="tel"],input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #description {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            resize: none;
+        }
+
+        
+        #document {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .navbar li {
+            display: inline;
+            margin: 0 20px;
+            
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Medical Checkup Registration</h2>
+        <form id="registration-form" action="captcha.html">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Any Medical Reports:(if any)</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="document">Upload MC(if any):</label>
+                <input type="file" id="document" name="document" accept=".pdf, .doc, .docx" >
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const dob = document.getElementById("dob").value;
+            const ageInput = document.getElementById("age");
+            const phoneInput = document.getElementById("phone");
+            const descriptionInput = document.getElementById("description");
+            const documentInput = document.getElementById("document");
+            window.location.href = "captcha.html";
+        });
+
+        form.addEventListener("submit", function(event) {
+            if (validateForm()) {
+            window.location.href = "captcha.html";
+        } else {
+            event.preventDefault();
+        }
+        });
+
+        function validateForm() {
+            let valid = true;
+
+            if (nameInput.value.trim() === "") {
+                alert("Full Name is required.");
+                valid = false;
+            }
+
+            if (!isValidEmail(emailInput.value)) {
+                alert("Invalid Email address.");
+                valid = false;
+            }
+
+            if (dobInput.value.trim() === "") {
+                alert("Date of Birth is required.");
+                valid = false;
+            }
+            if (ageInput.value <= 0 || ageInput.value > 120) {
+                alert("Age must be a positive number less than 120.");
+                valid = false;
+            }
+
+            if (!phoneInput.value.match(/^\d{10}$/)) {
+                alert("Invalid Phone Number. It should be 10 digits.");
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>

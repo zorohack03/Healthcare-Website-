@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+            background-image: url('mountains_front.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .navbar li {
+            display: inline;
+            margin: 0 20px;
+            
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .calculator {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1c7cd6;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .calculate-button {
+            background-color: #1c7cd6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .unit-selector {
+            display: flex;
+            align-items: center; 
+            justify-content: space-between; 
+            margin: 10px 0;
+        }
+
+        .unit-selector label {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .unit-selector select {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+ 
+    <div class="calculator">
+        <h1>BMI Calculator</h2>
+        
+        <div class="unit-selector">
+            <label for="weight-unit">Weight Unit:</label>
+            <select id="weight-unit">
+                <option value="kg">Kilograms</option>
+                <option value="lb">Pounds</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" placeholder="Enter your weight" step="0.01">
+        </div>
+        <div class="unit-selector">
+            <label for="height-unit">Height Unit:</label>
+            <select id="height-unit">
+                <option value="cm">Centimeters</option>
+                <option value="ft">Feet & Inches</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="height">Height:</label>
+            <input type="number" id="height" placeholder="Enter your height" step="0.01">
+        </div>
+        <button class="calculate-button" onclick="calculateBMI()">Calculate BMI</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weightUnit = document.getElementById("weight-unit").value;
+            const heightUnit = document.getElementById("height-unit").value;
+            const weightInput = parseFloat(document.getElementById("weight").value);
+            const heightInput = parseFloat(document.getElementById("height").value);
+
+            if (isNaN(weightInput) || isNaN(heightInput)) {
+                document.getElementById("result").textContent = "Please enter valid values for weight and height.";
+                return;
+            }
+
+            let weight, height;
+
+            if (weightUnit === "lb") {
+                weight = weightInput * 0.453592;
+            } else {
+                weight = weightInput;
+            }
+
+            if (heightUnit === "ft") {
+                const feet = Math.floor(heightInput);
+                const inches = (heightInput - feet) * 12;
+                height = (feet * 30.48) + (inches * 2.54);
+            } else {
+                height = heightInput;
+            }
+
+            const bmi = weight / ((height / 100) * (height / 100));
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = `Your BMI: ${bmi.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
